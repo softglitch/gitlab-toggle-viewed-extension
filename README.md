@@ -11,7 +11,10 @@ A Brave/Chrome extension that adds a "Toggle Viewed" button to GitLab merge requ
 
 ## Usage
 
-Navigate to any merge request's **Changes** tab (`/diffs`) on `gitlab.com`. A "Toggle Viewed" button appears in the top action bar alongside the existing buttons. Click it to check/uncheck all file-viewed checkboxes at once.
+Navigate to any merge request's **Changes** tab (`/diffs`) on `gitlab.com`. A "Toggle Viewed" button appears in the top action bar alongside the existing buttons.
+
+- **Click** — toggles all file-viewed checkboxes (checked become unchecked and vice versa).
+- **Shift+Click** — marks all files as viewed without toggling already-viewed files back. The button text changes to "Mark All Viewed" while Shift is held.
 
 ## License
 

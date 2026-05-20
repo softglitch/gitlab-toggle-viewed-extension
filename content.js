@@ -7,13 +7,37 @@
     btn.type = "button";
     btn.textContent = "Toggle Viewed";
     btn.className = "btn btn-default btn-md gl-button";
-    btn.addEventListener("click", () => {
-      Array.from(document.getElementsByTagName("input")).forEach((x) => {
-        if (x.name.startsWith("code-review-")) {
-          x.click();
-        }
-      });
+
+    btn.addEventListener("click", (e) => {
+      const checkboxes = Array.from(
+        document.getElementsByTagName("input")
+      ).filter((x) => x.name.startsWith("code-review-"));
+
+      if (e.shiftKey) {
+        // Shift+click: mark all as viewed (only click unchecked ones)
+        checkboxes.forEach((x) => {
+          if (!x.checked) x.click();
+        });
+      } else {
+        // Normal click: toggle all
+        checkboxes.forEach((x) => x.click());
+      }
     });
+
+    // Update button text on shift key state
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Shift") {
+        const b = document.getElementById(BUTTON_ID);
+        if (b) b.textContent = "Mark All Viewed";
+      }
+    });
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Shift") {
+        const b = document.getElementById(BUTTON_ID);
+        if (b) b.textContent = "Toggle Viewed";
+      }
+    });
+
     return btn;
   }
 
